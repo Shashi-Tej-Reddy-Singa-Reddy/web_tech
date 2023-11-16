@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>Password Generator</title>
+    <title>Password Generator</title>
+    <link rel="stylesheet" type="text/css" href="passgencss.css">
+</head>
+
+<body>
+    <h1>Password Generator</h1>
+    <p>Enter the length of your password:</p>
+    <input type="number" id="length" min="8" max="128" value="16">
+    <p>Include uppercase letters?</p>
+    <input type="checkbox" id="uppercase">
+    <p>Include numbers?</p>
+    <input type="checkbox" id="numbers">
+    <p>Include symbols?</p>
+    <input type="checkbox" id="symbols">
+    <p>Click the button to generate a password:</p>
+    <button type="button" id="generate">Generate Password</button>
+    <p>Your password is:</p>
+    <p id="password"></p>
+</body>
+<script>
+    function generatePassword() {
+        var length = document.getElementById("length").value;
+        var uppercase = document.getElementById("uppercase").checked;
+        var numbers = document.getElementById("numbers").checked;
+        var symbols = document.getElementById("symbols").checked;
+        var password = "";
+        var characters = "";
+        if (uppercase) {
+            characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        }
+        if (numbers) {
+            characters += "0123456789";
+        }
+        if (symbols) {
+            characters += "!@#$%^&*()";
+        }
+        for (var i = 0; i < length; i++) {
+            password += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        document.getElementById("password").innerHTML = password;
+    }
+    document.getElementById("generate").addEventListener("click", generatePassword);
+</script>
+
+</html>
